@@ -1,0 +1,503 @@
+:root {
+    --netflix-red: #E50914; /* Define a variável de cor vermelha da Netflix */
+    --dark-bg: #141414; /* Define a variável de fundo escuro */
+    --text-color: #ffffff; /* Define a variável de cor do texto */
+}
+
+* {
+    margin: 0; /* Remove todas as margens padrão */
+    padding: 0; /* Remove todos os preenchimentos padrão */
+    box-sizing: border-box; /* Inclui padding e border na largura/altura total */
+}
+
+body {
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Define a família de fontes para o corpo */
+    background-color: var(--dark-bg); /* Define a cor de fundo usando a variável */
+    color: var(--text-color); /* Define a cor do texto usando a variável */
+    overflow-x: hidden; /* Oculta o overflow horizontal */
+}
+
+a {
+    text-decoration: none; /* Remove a decoração de texto dos links */
+    color: #e5e5e5; /* Define a cor dos links */
+    transition: color 0.3s; /* Adiciona transição suave na cor */
+}
+
+a:hover {
+    color: #b3b3b3; /* Muda a cor dos links ao passar o mouse */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed; /* Fixa a navbar no topo */
+    top: 0; /* Posiciona no topo */
+    width: 100%; /* Largura total */
+    display: flex; /* Usa flexbox */
+    justify-content: space-between; /* Espaça itens entre esquerda e direita */
+    align-items: center; /* Alinha itens verticalmente ao centro */
+    padding: 0 4%; /* Padding lateral */
+    height: 70px; /* Altura da navbar */
+    z-index: 1000; /* Z-index alto para ficar acima */
+    background-color: var(--dark-bg); /* Fundo escuro */
+}
+
+.navbar-left,
+.navbar-right {
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Alinha itens ao centro */
+    gap: 20px; /* Espaço entre itens */
+}
+
+.logo {
+    width: 92px; /* Largura do logo */
+    margin-right: 25px; /* Margem direita */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+.nav-links {
+    list-style: none; /* Remove estilo de lista */
+    display: flex; /* Usa flexbox */
+    gap: 20px; /* Espaço entre links */
+    font-size: 13px; /* Tamanho da fonte */
+}
+
+.nav-links .active {
+    font-weight: bold; /* Negrito para ativo */
+    color: white; /* Cor branca */
+}
+
+.icon {
+    font-size: 20px; /* Tamanho da fonte do ícone */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+.kids-link {
+    font-size: 14px; /* Tamanho da fonte para link infantil */
+}
+
+.nav-notification {
+    position: relative; /* Posição relativa para badge */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+.notification-badge {
+    position: absolute; /* Posição absoluta */
+    top: -5px; /* Topo */
+    right: -8px; /* Direita */
+    background-color: var(--netflix-red); /* Fundo vermelho */
+    color: white; /* Cor branca */
+    font-size: 10px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    border-radius: 50%; /* Bordas arredondadas */
+    width: 16px; /* Largura */
+    height: 16px; /* Altura */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.profile-menu {
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Alinha itens ao centro */
+    gap: 5px; /* Espaço pequeno */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+.profile-icon {
+    width: 32px; /* Largura do ícone */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Sliders */
+.sliders-container {
+    padding: 0 4%; /* Padding lateral */
+    padding-top: 100px; /* Padding topo para navbar */
+    /* Space for navbar */
+    position: relative; /* Posição relativa */
+    z-index: 3; /* Z-index */
+    padding-bottom: 100px; /* Padding inferior */
+}
+
+.slider-section {
+    margin-bottom: 3.5vw; /* Margem inferior */
+}
+
+.slider-header {
+    display: flex; /* Usa flexbox */
+    justify-content: space-between; /* Espaça entre */
+    align-items: flex-end; /* Alinha ao final */
+    margin-bottom: 12px; /* Margem inferior */
+}
+
+.slider-title {
+    font-size: 1.25vw; /* Tamanho da fonte responsivo */
+    font-weight: bold; /* Negrito */
+    color: #e5e5e5; /* Cor */
+    line-height: 1.25vw; /* Altura da linha */
+}
+
+.slider-indicators {
+    display: flex; /* Usa flexbox */
+    gap: 2px; /* Espaço pequeno */
+    margin-bottom: 4px; /* Margem inferior */
+}
+
+.slider-indicators div {
+    width: 12px; /* Largura */
+    height: 2px; /* Altura */
+    background-color: #4d4d4d; /* Fundo cinza */
+}
+
+.slider-indicators div.active {
+    background-color: #aaa; /* Fundo claro para ativo */
+}
+
+.movie-row {
+    display: flex; /* Usa flexbox */
+    gap: 8px; /* Espaço entre cartões */
+    /* Small gap between movie cards */
+    overflow-x: visible; /* Overflow horizontal visível */
+    /* Let the expanded cards paint outside this box vertically */
+    padding: 10px 4% 50px 4%; /* Padding */
+    /* Added bottom padding to hold the expanding modal */
+    margin: 0 -4%; /* Margem negativa */
+    /* Pull edges back out so we don't double up padding from container */
+    scroll-behavior: smooth; /* Rolagem suave */
+    -ms-overflow-style: none; /* Remove scrollbar no IE */
+    scrollbar-width: none; /* Remove scrollbar no Firefox */
+}
+
+.movie-row::-webkit-scrollbar {
+    display: none; /* Oculta scrollbar no Webkit */
+}
+
+.movie-card {
+    min-width: 250px; /* Largura mínima */
+    width: 250px; /* Largura */
+    height: 140px; /* Altura */
+    background-color: #222; /* Fundo escuro */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s, border-radius 0.3s 0s, z-index 0s 0.3s, box-shadow 0.3s 0s; /* Transições */
+    position: relative; /* Posição relativa */
+    z-index: 1; /* Z-index */
+    transform-origin: center center; /* Origem da transformação */
+    /* Default origin */
+}
+
+/* Modifiers applied by JavaScript to prevent edge clipping */
+.movie-card.origin-left {
+    transform-origin: left center; /* Origem esquerda para evitar clipping */
+}
+
+.movie-card.origin-right {
+    transform-origin: right center; /* Origem direita para evitar clipping */
+}
+
+.movie-card:hover {
+    transform: scale(1.6) translateY(-5%); /* Escala e translada no hover */
+    /* Reduced vertical translation since container has more padding */
+    z-index: 99; /* Z-index alto no hover */
+    border-radius: 6px; /* Bordas mais arredondadas */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9); /* Sombra */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, border-radius 0.3s 0.6s, box-shadow 0.3s 0.6s, z-index 0s 0s; /* Transições atrasadas */
+}
+
+.movie-card img {
+    position: absolute; /* Posição absoluta */
+    top: 0; /* Topo */
+    left: 0; /* Esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    object-fit: cover; /* Ajusta imagem */
+    border-radius: 4px; /* Bordas arredondadas */
+    transition: opacity 0.3s ease, border-radius 0.3s; /* Transições */
+    z-index: 2; /* Z-index */
+}
+
+.movie-card iframe {
+    position: absolute; /* Posição absoluta */
+    top: 0; /* Topo */
+    left: 0; /* Esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    opacity: 0; /* Opacidade inicial 0 */
+    border-radius: 4px; /* Bordas arredondadas */
+    transition: opacity 0.3s ease, border-radius 0.3s; /* Transições */
+    pointer-events: none; /* Desabilita eventos de ponteiro */
+    z-index: 1; /* Z-index */
+}
+
+.movie-card iframe.playing {
+    opacity: 1; /* Opacidade 1 quando tocando */
+    z-index: 3; /* Z-index alto */
+    border-radius: 6px 6px 0 0; /* Bordas arredondadas apenas no topo */
+}
+
+.movie-card:hover img {
+    border-radius: 6px 6px 0 0; /* Bordas arredondadas no topo no hover */
+    transition: border-radius 0s 0.6s; /* Transição atrasada */
+}
+
+.movie-card img.playing-video {
+    opacity: 0; /* Opacidade 0 quando vídeo tocando */
+}
+
+/* Card Details Modal */
+.card-details {
+    position: absolute; /* Posição absoluta */
+    top: 100%; /* Abaixo do cartão */
+    left: 0; /* Esquerda */
+    width: 100%; /* Largura total */
+    background-color: #181818; /* Fundo escuro */
+    border-bottom-left-radius: 6px; /* Bordas arredondadas inferior esquerda */
+    border-bottom-right-radius: 6px; /* Bordas arredondadas inferior direita */
+    padding: 18px 16px; /* Padding */
+    opacity: 0; /* Opacidade inicial 0 */
+    visibility: hidden; /* Visibilidade oculta */
+    transition: opacity 0.3s 0s, visibility 0.3s 0s; /* Transições */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9); /* Sombra */
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Direção coluna */
+    gap: 12px; /* Espaço entre itens */
+    z-index: 2; /* Z-index */
+    cursor: default; /* Cursor padrão */
+}
+
+.movie-card:hover .card-details {
+    opacity: 1; /* Opacidade 1 no hover */
+    visibility: visible; /* Visibilidade visível */
+    transition: opacity 0.2s 0.6s, visibility 0s 0.6s; /* Transições atrasadas */
+}
+
+.details-buttons {
+    display: flex; /* Usa flexbox */
+    justify-content: space-between; /* Espaça entre */
+    align-items: center; /* Alinha ao centro */
+}
+
+.left-buttons,
+.right-buttons {
+    display: flex; /* Usa flexbox */
+    gap: 8px; /* Espaço entre botões */
+}
+
+.btn-icon {
+    width: 32px; /* Largura */
+    height: 32px; /* Altura */
+    border-radius: 50%; /* Bordas circulares */
+    background-color: #2b2b2b; /* Fundo escuro */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Borda semi-transparente */
+    color: white; /* Cor branca */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size: 14px; /* Tamanho da fonte */
+    transition: border-color 0.2s, background-color 0.2s; /* Transições */
+}
+
+.btn-icon:hover {
+    border-color: rgb(255, 255, 255); /* Borda branca no hover */
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente no hover */
+}
+
+.btn-play-icon {
+    background-color: white; /* Fundo branco */
+    color: black; /* Cor preta */
+    border: none; /* Sem borda */
+}
+
+.btn-play-icon:hover {
+    background-color: #e6e6e6; /* Fundo cinza claro no hover */
+}
+
+.btn-play-icon i {
+    margin-left: 2px; /* Margem esquerda para ícone */
+}
+
+.details-info {
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Alinha ao centro */
+    gap: 8px; /* Espaço entre itens */
+    font-size: 11px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+}
+
+.match-score {
+    color: #46d369; /* Cor verde para pontuação */
+}
+
+.age-badge {
+    background-color: transparent; /* Fundo transparente */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda semi-transparente */
+    color: white; /* Cor branca */
+    padding: 1px 3px; /* Padding */
+    border-radius: 2px; /* Bordas arredondadas */
+    font-family: Arial, sans-serif; /* Família de fonte */
+}
+
+.age-badge.red-accent {
+    background-color: #d32f2f; /* Fundo vermelho */
+    border: none; /* Sem borda */
+    font-weight: bold; /* Negrito */
+}
+
+.resolution {
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda semi-transparente */
+    padding: 1px 3px; /* Padding */
+    border-radius: 2px; /* Bordas arredondadas */
+    color: rgba(255, 255, 255, 0.9); /* Cor semi-transparente */
+}
+
+.duration {
+    color: rgba(255, 255, 255, 0.9); /* Cor semi-transparente */
+}
+
+.details-tags {
+    display: flex; /* Usa flexbox */
+    gap: 6px; /* Espaço entre tags */
+    font-size: 11px; /* Tamanho da fonte */
+    color: rgba(255, 255, 255, 0.9); /* Cor semi-transparente */
+    margin-top: 4px; /* Margem superior */
+}
+
+.details-tags span:not(:last-child)::after {
+    content: "•"; /* Adiciona ponto separador */
+    color: #666; /* Cor cinza */
+    margin-left: 6px; /* Margem esquerda */
+}
+
+/* Badges */
+.badge-top10 {
+    position: absolute; /* Posição absoluta */
+    top: 0; /* Topo */
+    right: 0; /* Direita */
+    width: 22px; /* Largura */
+    height: 28px; /* Altura */
+    background-color: var(--netflix-red); /* Fundo vermelho */
+    color: white; /* Cor branca */
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Direção coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    font-weight: bold; /* Negrito */
+    z-index: 4; /* Z-index alto */
+    border-bottom-left-radius: 2px; /* Bordas arredondadas inferior esquerda */
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Família de fonte */
+}
+
+.badge-top10 span.top {
+    font-size: 7px; /* Tamanho da fonte pequeno */
+    letter-spacing: 0.5px; /* Espaçamento entre letras */
+    line-height: 8px; /* Altura da linha */
+}
+
+.badge-top10 span.number {
+    font-size: 13px; /* Tamanho da fonte */
+    line-height: 13px; /* Altura da linha */
+}
+
+.badge-bottom {
+    position: absolute; /* Posição absoluta */
+    bottom: 8px; /* Inferior */
+    left: 50%; /* Centro horizontal */
+    transform: translateX(-50%); /* Translada para centro */
+    padding: 2px 4px; /* Padding */
+    font-size: 10px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    border-radius: 2px; /* Bordas arredondadas */
+    z-index: 4; /* Z-index */
+    white-space: nowrap; /* Não quebra linha */
+    text-transform: uppercase; /* Maiúsculas */
+}
+
+.movie-card.has-progress .badge-bottom {
+    bottom: 12px; /* Ajusta inferior quando há progresso */
+}
+
+.badge-bottom.red {
+    background-color: var(--netflix-red); /* Fundo vermelho */
+    color: white; /* Cor branca */
+}
+
+.badge-bottom.white {
+    background-color: white; /* Fundo branco */
+    color: black; /* Cor preta */
+}
+
+/* Progress bar */
+.progress-bar-container {
+    position: absolute; /* Posição absoluta */
+    bottom: 0; /* Inferior */
+    left: 0; /* Esquerda */
+    width: 100%; /* Largura total */
+    height: 4px; /* Altura */
+    background-color: rgba(100, 100, 100, 0.7); /* Fundo cinza semi-transparente */
+    z-index: 5; /* Z-index */
+    border-bottom-left-radius: 4px; /* Bordas arredondadas inferior esquerda */
+    border-bottom-right-radius: 4px; /* Bordas arredondadas inferior direita */
+}
+
+.progress-value {
+    height: 100%; /* Altura total */
+    background-color: var(--netflix-red); /* Fundo vermelho */
+    border-bottom-left-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .movie-card {
+        min-width: 200px;
+        width: 200px;
+        height: 112px;
+    }
+
+    .slider-title {
+        font-size: 4vw;
+        line-height: 4.5vw;
+    }
+}
+
+/* Footer */
+footer {
+    padding: 0 4%;
+    color: #737373;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 30px;
+}
+
+.footer-links {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+}
+
+.footer-links a {
+    color: #737373;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

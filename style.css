@@ -1,0 +1,631 @@
+/* ==========================================
+   RESET E VARIÁVEIS GLOBAIS
+   ========================================== */
+
+/* Define variáveis CSS reutilizáveis para manter consistência visual */
+:root {
+    /* Cor principal/destaque do design */
+    --primary-color: #ffffff;
+    /* Cor de fundo principal (cinza escuro) */
+    --dark-bg: #141414;
+    /* Cor de fundo mais escura para gradientes */
+    --darker-bg: #000000;
+    /* Cor do texto principal (branco) */
+    --text-primary: #ffffff;
+    /* Cor do texto secundário (cinza) */
+    --text-secondary: #999999;
+    /* Arredondamento dos cantos dos elementos */
+    --border-radius: 8px;
+    /* Duração e tipo de animação de transição */
+    --transition: all 0.3s ease;
+}
+
+/* Variáveis para light mode */
+.light-mode {
+    /* Cor principal/destaque do design (preto) */
+    --primary-color: #000000;
+    /* Cor de fundo principal (branco) */
+    --dark-bg: #ffffff;
+    /* Cor de fundo mais clara para gradientes */
+    --darker-bg: #f5f5f5;
+    /* Cor do texto principal (preto) */
+    --text-primary: #000000;
+    /* Cor do texto secundário (cinza escuro) */
+    --text-secondary: #666666;
+}
+
+/* Remove margens e paddings padrão de todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    /* Inclui padding e border no cálculo da largura/altura */
+    box-sizing: border-box;
+}
+
+/* Ativa scroll suave ao navegar entre seções */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================================
+   ESTILOS DO CORPO DA PÁGINA
+   ========================================== */
+
+/* Aplica estilos de fundo e texto para todo o corpo */
+body {
+    /* Usa a variável de cor de fundo escura */
+    background-color: var(--dark-bg);
+    /* Cor do texto padrão (branco) */
+    color: var(--text-primary);
+    /* Define a fonte padrão da página */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Impede barra de scroll horizontal */
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+header {
+    /* Posiciona no topo */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    /* Z-index alto para ficar acima */
+    z-index: 1000;
+    /* Flex para alinhar logo e toggle */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Inicialmente oculto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+
+.netflix-logo {
+    height: 100px;
+    width: auto;
+}
+
+#theme-toggle {
+    /* Remove estilos padrão do botão */
+    background: none;
+    border: none;
+    /* Cor do texto */
+    color: var(--text-primary);
+    /* Tamanho da fonte */
+    font-size: 1.5rem;
+    /* Cursor pointer */
+    cursor: pointer;
+    /* Transição suave */
+    transition: var(--transition);
+    /* Padding */
+    padding: 10px;
+    /* Border radius */
+    border-radius: var(--border-radius);
+}
+
+#theme-toggle:hover {
+    /* Fundo sutil no hover */
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   TELA DE ABERTURA
+   ========================================== */
+
+.opening-screen {
+    /* Posição fixa para cobrir toda a tela */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fundo preto */
+    background-color: #000000;
+    /* Flex para centralizar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Z-index alto */
+    z-index: 9999;
+    /* Animação de fade out */
+    animation: fadeOut 4s ease-in-out 3s forwards;
+}
+
+.logo-container {
+    /* Centraliza o logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Animação de expansão */
+    animation: expandLogo 3s ease-in-out forwards;
+}
+
+.netflix-logo-opening {
+    /* Tamanho inicial do logo */
+    width: 200px;
+    height: auto;
+    /* Filtro para brilho vermelho */
+    filter: drop-shadow(0 0 20px #E50914);
+}
+
+@keyframes expandLogo {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px #E50914);
+    }
+    50% {
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 50px #E50914);
+    }
+    100% {
+        transform: scale(2);
+        filter: drop-shadow(0 0 100px #E50914);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* ==========================================
+   ELEMENTO MAIN (CONTAINER PRINCIPAL)
+   ========================================== */
+
+/* Container principal que ocupa toda a tela */
+main {
+    /* Largura total da tela */
+    width: 100%;
+    /* Altura mínima de 100% da viewport (tela inteira) */
+    min-height: 100vh;
+    /* Cria gradiente de fundo de 135 graus (do escuro para menos escuro) */
+    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+    /* Inicialmente oculto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+
+/* ==========================================
+   SEÇÃO DE SELEÇÃO DE PERFIL
+   ========================================== */
+
+/* Container que centraliza todos os perfis na tela */
+.profile-selection {
+    /* Usa flexbox para alinhamento */
+    display: flex;
+    /* Coloca itens em coluna (de cima para baixo) */
+    flex-direction: column;
+    /* Alinha itens horizontalmente no centro */
+    align-items: center;
+    /* Alinha itens verticalmente no centro */
+    justify-content: center;
+    /* Altura mínima de 100% da viewport */
+    min-height: 100vh;
+    /* Espaçamento interno de 40px (vertical) e 20px (horizontal) */
+    padding: 40px 20px;
+    /* Centraliza o texto dentro do elemento */
+    text-align: center;
+}
+
+/* ==========================================
+   TÍTULO PRINCIPAL
+   ========================================== */
+
+/* Estilos para o título "Quem está assistindo?" */
+.profile-selection h1 {
+    /* Tamanho de fonte bem grande (56px) */
+    font-size: 3.5rem;
+    /* Peso da fonte bem pesado (negrito) */
+    font-weight: 700;
+    /* Espaço abaixo do título */
+    margin-bottom: 60px;
+    /* Espaçamento entre as letras */
+    letter-spacing: 2px;
+    /* Transforma o texto para MAIÚSCULAS */
+    text-transform: uppercase;
+    /* Cria um gradiente de cor de branco para cinza */
+    background: linear-gradient(0deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    /* Permite que o gradiente seja aplicado ao texto (webkit) */
+    -webkit-background-clip: text;
+    /* Faz o texto ser transparente para mostrar o gradiente por trás */
+    -webkit-text-fill-color: transparent;
+    /* Versão padrão de background-clip */
+    background-clip: text;
+}
+
+/* ==========================================
+   CONTAINER DE PERFIS (GRID)
+   ========================================== */
+
+/* Container que organiza os perfis em grid responsivo */
+.profiles {
+    /* Remove marcadores de lista (pois é uma <ul>) */
+    list-style: none;
+}
+
+/* Lista ordenada dos perfis */
+.profile-list {
+    /* Usa grid para layout (melhor que flexbox para múltiplas linhas) */
+    display: grid;
+    /* Cria colunas de no mínimo 150px que se expandem automaticamente */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Espaçamento entre os itens (30px) */
+    gap: 30px;
+    /* Largura máxima do container */
+    max-width: 800px;
+    /* Ocupa 100% da largura disponível */
+    width: 100%;
+    /* Remove marcadores de lista (pois é uma <ol>) */
+    list-style: none;
+}
+
+/* ==========================================
+   ITEM DE PERFIL (LISTA)
+   ========================================== */
+
+/* Cada item individual da lista de perfis */
+.profile-subitem {
+    /* Usa flexbox para centralizar o conteúdo */
+    display: flex;
+    /* Centraliza horizontalmente */
+    justify-content: center;
+    /* Centraliza verticalmente */
+    align-items: center;
+}
+
+/* ==========================================
+   BOTÃO DO PERFIL
+   ========================================== */
+
+/* Estilo base do botão (clicável) */
+.profile-button {
+    /* Remove cor de fundo padrão do botão */
+    background: none;
+    /* Remove borda padrão do botão */
+    border: none;
+    /* Muda o cursor para indicar que é clicável */
+    cursor: pointer;
+    /* Usa flexbox para organizar imagem e nome em coluna */
+    display: flex;
+    /* Coloca itens em coluna (de cima para baixo) */
+    flex-direction: column;
+    /* Centraliza itens horizontalmente */
+    align-items: center;
+    /* Espaço entre a imagem e o nome */
+    gap: 16px;
+    /* Aplica transições suaves em todas as mudanças */
+    transition: var(--transition);
+    /* Espaçamento interno do botão */
+    padding: 10px;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.profile-button:hover {
+    /* Aumenta o tamanho do botão em 10% */
+    transform: scale(1.3);
+}
+
+/* Efeito ao clicar no botão */
+.profile-button:active {
+    /* Reduz o tamanho do botão em 5% simulando um clique */
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   IMAGEM DO PERFIL
+   ========================================== */
+
+/* Estilos da imagem dentro do botão */
+.profile-button img {
+    /* Largura fixa da imagem */
+    width: 150px;
+    /* Altura fixa (cria quadrado) */
+    height: 150px;
+    /* Arredonda os cantos da imagem */
+    border-radius: 50%;
+    /* Ajusta a imagem sem distorcer (crop se necessário) */
+    object-fit: cover;
+    /* Aplica transições suaves */
+    transition: var(--transition);
+    /* Borda inicialmente transparente (sem efeito visual) */
+    border: 3px solid ;
+}
+
+/* Efeito ao passar o mouse sobre a imagem */
+.profile-button:hover img {
+
+    /* Aumenta o brilho da imagem em 10% */
+    filter: brightness(1.2);
+}
+
+/* ==========================================
+   NOME DO PERFIL
+   ========================================== */
+
+/* Estilos do nome que aparece abaixo da imagem */
+.profile-name {
+    /* Tamanho da fonte do nome */
+    font-size: 0.95rem;
+    /* Peso da fonte (semi-negrito) */
+    font-weight: 600;
+    /* Cor do texto em cinza */
+    color: var(--text-secondary);
+    /* Aplica transições suaves */
+    transition: var(--transition);
+    /* Largura máxima do nome */
+    max-width: 150px;
+    /* Oculta o texto que ultrapassa a largura */
+    overflow: hidden;
+    /* Adiciona "..." quando o texto é muito longo */
+    text-overflow: ellipsis;
+    /* Impede que o texto quebre em múltiplas linhas */
+    white-space: nowrap;
+}
+
+/* Efeito ao passar o mouse sobre o botão (realça o nome) */
+.profile-button:hover .profile-name {
+    /* Muda a cor para branco */
+    color: var(--text-primary);
+    /* Aumenta o tamanho da fonte em 5% */
+    font-size: 1.05rem;
+}
+
+/* ==========================================
+   BOTÕES ESPECIAIS (ADICIONAR E EDITAR)
+   ========================================== */
+
+/* Estilos para o botão de adicionar perfil */
+.add-profile, .edit-profile {
+   
+    /* Borda */
+    border: 23x solid var(--text-secondary);
+    /* Arredondamento */
+    border-radius: var(--border-radius);
+    /* Padding */
+    padding: 10px;
+}
+
+.add-icon, .edit-icon {
+    /* Tamanho do "quadrado" do ícone */
+    width: 150px;
+    height: 150px;
+    /* Flex para centralizar o texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Fundo sutil */
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Arredondamento */
+    border-radius: var(--border-radius);
+    /* Tamanho grande do ícone */
+    font-size: 3rem;
+    /* Cor */
+    color: var(--text-secondary);
+    /* Transição */
+    transition: var(--transition);
+    /* Margem abaixo */
+    margin-bottom: 12px;
+}
+
+.add-profile:hover .add-icon, .edit-profile:hover .edit-icon {
+    /* Muda cor no hover */
+    color: var(--primary-color);
+    /* Fundo mais visível */
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.add-profile:hover, .edit-profile:hover {
+    /* Borda sólida no hover */
+    border-style: solid;
+    /* Fundo mais visível */
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   RESPONSIVIDADE - TABLETS (até 768px)
+   ========================================== */
+
+/* Ajustes para telas menores (tablets) */
+@media (max-width: 768px) {
+
+    /* Reduz tamanho do título para tablets */
+    .profile-selection h1 {
+        /* Reduz o tamanho de 3.5rem para 2.5rem */
+        font-size: 2.5rem;
+        /* Reduz espaço abaixo do título */
+        margin-bottom: 40px;
+    }
+
+    /* Ajusta o grid de perfis para tablets */
+    .profile-list {
+        /* Reduz tamanho mínimo das colunas para 120px */
+        grid-template-columns: repeat(auto-fit, minmax(120px, 2fr));
+        /* Reduz espaço entre items */
+        gap: 20px;
+    }
+
+    /* Reduz tamanho das imagens em tablets */
+    .profile-button img {
+        /* Reduz de 150px para 120px */
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Reduz tamanho do texto do nome em tablets */
+    .profile-name {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==========================================
+   RESPONSIVIDADE - MOBILE (até 480px)
+   ========================================== */
+
+/* Ajustes para telas muito pequenas (smartphones) */
+@media (max-width: 480px) {
+
+    /* Reduz padding da seção em mobile */
+    .profile-selection {
+        /* Reduz espaçamento interno para mobile */
+        padding: 20px 15px;
+    }
+
+    /* Reduz bastante o tamanho do título em mobile */
+    .profile-selection h1 {
+        /* Reduz de 3.5rem para 1.8rem */
+        font-size: 1.8rem;
+        /* Reduz espaço abaixo do título */
+        margin-bottom: 30px;
+        /* Reduz espaçamento entre letras */
+        letter-spacing: 1px;
+    }
+
+    /* Ajusta o grid para mobile com duas colunas */
+    .profile-list {
+        /* Define duas colunas de largura igual */
+        grid-template-columns: repeat(2, 1fr);
+        /* Reduz espaço entre items */
+        gap: 15px;
+    }
+
+    /* Reduz muito o tamanho das imagens em mobile */
+    .profile-button img {
+        /* Reduz para 100px (menor ainda) */
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Reduz tamanho do texto do nome em mobile */
+    .profile-name {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================
+   RESPONSIVIDADE - DESKTOP GRANDE (acima de 1200px)
+   ========================================== */
+
+/* Ajustes para telas grandes (desktops) */
+@media (min-width: 1200px) {
+
+    /* Aumenta o tamanho do título para desktops grandes */
+    .profile-selection h1 {
+        /* Aumenta para 4rem */
+        font-size: 4rem;
+        /* Aumenta espaço abaixo do título */
+        margin-bottom: 80px;
+        /* Aumenta espaçamento entre letras */
+        letter-spacing: 3px;
+    }
+
+    /* Ajusta o grid de perfis para desktops grandes */
+    .profile-list {
+        /* Aumenta tamanho mínimo das colunas para 200px */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Aumenta espaço entre items */
+        gap: 40px;
+        /* Aumenta largura máxima */
+        max-width: 1200px;
+    }
+
+    /* Aumenta tamanho das imagens em desktops grandes */
+    .profile-button img {
+        /* Aumenta para 200px */
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Aumenta tamanho do texto do nome em desktops grandes */
+    .profile-name {
+        font-size: 1.1rem;
+        /* Aumenta largura máxima */
+        max-width: 200px;
+    }
+}
+
+/* ==========================================
+   ANIMAÇÕES DE ENTRADA
+   ========================================== */
+
+/* Define a animação de entrada fade-in com movimento de baixo para cima */
+@keyframes fadeInUp {
+
+    /* Estado inicial: invisível e deslocado para baixo */
+    from {
+        /* Opacidade zero (invisível) */
+        opacity: 0;
+        /* Desloca 20px para baixo */
+        transform: translateY(20px);
+    }
+
+    /* Estado final: visível e no lugar correto */
+    to {
+        /* Opacidade 1 (totalmente visível) */
+        opacity: 1;
+        /* Sem deslocamento */
+        transform: translateY(0);
+    }
+}
+
+/* Aplica animação ao título */
+.profile-selection h1 {
+    /* Nome da animação: fadeInUp */
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Aplica animação aos itens de perfil */
+.profile-subitem {
+    /* Nome da animação: fadeInUp */
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Primeiro perfil entra 0.1s após início */
+.profile-subitem:nth-child(1) {
+    /* Atraso de 0.1 segundo para efeito em cascata */
+    animation-delay: 0.1s;
+}
+
+/* Segundo perfil entra 0.2s após início */
+.profile-subitem:nth-child(2) {
+    /* Atraso de 0.2 segundo */
+    animation-delay: 0.2s;
+}
+
+/* Terceiro perfil entra 0.3s após início */
+.profile-subitem:nth-child(3) {
+    /* Atraso de 0.3 segundo */
+    animation-delay: 0.3s;
+}
+
+/* Quarto perfil entra 0.4s após início */
+.profile-subitem:nth-child(4) {
+    /* Atraso de 0.4 segundo */
+    animation-delay: 0.4s;
+}
+
+
+/* ==========================================
+   ACESSIBILIDADE - FOCUS
+   ========================================== */
+
+/* Estilos para quando o botão recebe foco (navegação por teclado) */
+.profile-button:focus {
+    /* Cria um contorno de 2px com a cor branca */
+    outline: 2px solid var(--primary-color);
+    /* Distância entre o elemento e o contorno */
+    outline-offset: 4px;
+    /* Arredonda os cantos do contorno */
+    border-radius: var(--border-radius);
+}

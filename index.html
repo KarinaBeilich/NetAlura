@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Selecione um perfil para começar a assistir na Netflix">
+    <title>Netflix - Seleção de Perfil</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="opening-screen" class="opening-screen">
+        <div class="logo-container">
+            <img src="/assets/Netflix-Logo.png" alt="Netflix Logo" class="netflix-logo-opening">
+        </div>
+    </div>
+    <header>
+        <img src="/assets/Netflix-Logo.png" alt="Logo Netflix" class="netflix-logo">
+        <button id="theme-toggle" aria-label="Alternar modo escuro/claro">🌙</button>
+    </header>
+    <main>
+        <section class="profile-selection">
+            <h1>Quem está assistindo?</h1>
+            
+            <ul class="profiles" role="list">
+                <li class="profile-item" role="listitem">
+                    <ol class="profile-list">
+                        <li class="profile-subitem">
+                            <button class="profile-button" type="button" name="profile-1">
+                                <img src="/assets/perfil 1.png" alt="Um jovem muito magro e pálido, com olhos grandes e olheiras. Veste um terno listrado verde escuro, uma gravata borboleta e uma boina. O cabelo é roxo e bagunçado.">
+                                <span class="profile-name">Kevin</span>
+                            </button>
+                        </li>
+                        
+                        <li class="profile-subitem">
+                            <button class="profile-button" type="button" name="profile-2">
+                                <img src="/assets/perfil 2.png" alt="Uma moça pálida com olhos grandes e tristes. O cabelo é azul-escuro, curto e espetado, com pequenas borboletas presas nele. Ela usa um vestido preto de gola alta e segura um medalhão dourado aberto.  ">
+                                <span class="profile-name">Maria Eduarda</span>
+                            </button>
+                        </li>
+                        <li class="profile-subitem">
+                            <button class="profile-button" type="button" name="profile-3">
+                                <img src="/assets/perfil 3.png" alt="Uma moça pálida com olhos grandes e tristes. O cabelo é ruivos, curto e enrolado, com pequenas ferramentas presas nele. Ela usa um vestido preto de gola alta e segura um medalhão dourado aberto.  ">
+                                <span class="profile-name">Karina</span>
+                            </button>
+                        </li>
+                        
+                        <li class="profile-subitem">
+                            <button class="profile-button add-profile" type="button" name="add-profile">
+                                <div class="add-icon">+</div>
+                                <span class="profile-name">Adicionar Perfil</span>
+                            </button>
+                        </li>
+                        
+                        <li class="profile-subitem">
+                            <button class="profile-button edit-profile" type="button" name="edit-profile">
+                                <div class="edit-icon"> 🖊</div>
+                                <span class="profile-name">Editar Perfil</span>
+                            </button>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
