@@ -1,5 +1,5 @@
 :root {
-    --netflix-red: #E50914; /* Define a variável de cor vermelha da Netflix */
+    --netflix-red: #ff0000; /* Define a variável de cor vermelha da Netflix */
     --dark-bg: #141414; /* Define a variável de fundo escuro */
     --text-color: #ffffff; /* Define a variável de cor do texto */
 }
@@ -397,6 +397,126 @@ a:hover {
 .badge-top10 span.number {
     font-size: 13px; /* Tamanho da fonte */
     line-height: 13px; /* Altura da linha */
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Light Mode */
+body.light-mode {
+    --dark-bg: #ffffff;
+    --text-color: #000000;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+}
+
+body.light-mode .navbar {
+    background-color: var(--dark-bg);
+}
+
+body.light-mode a {
+    color: #333;
+}
+
+body.light-mode a:hover {
+    color: #666;
+}
+
+body.light-mode .movie-card {
+    background-color: #f0f0f0;
+}
+
+body.light-mode .card-details {
+    background-color: #e0e0e0;
+}
+
+body.light-mode .btn-icon {
+    background-color: #d0d0d0;
+    border-color: rgba(0, 0, 0, 0.5);
+    color: black;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--dark-bg);
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+    display: none;
+    z-index: 1001;
+    min-width: 200px;
+}
+
+body.light-mode .profile-dropdown {
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.profile-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-item {
+    margin-bottom: 5px;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .profile-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.profile-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.profile-button span {
+    font-size: 14px;
+}
+
+.add-profile {
+    justify-content: center;
+}
+
+.add-profile i {
+    margin-right: 10px;
 }
 
 .badge-bottom {

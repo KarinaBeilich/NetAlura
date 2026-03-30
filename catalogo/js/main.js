@@ -33,4 +33,70 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(carousel);
         });
     }
+
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+
+        // Toggle theme on click
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.classList.toggle('light-mode');
+            if (isLight) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
+    // Profile dropdown functionality
+    const profileCaret = document.getElementById('profile-caret');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    if (profileCaret && profileDropdown) {
+        profileCaret.addEventListener('click', (e) => {
+            e.preventDefault();
+            profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileCaret.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.style.display = 'none';
+            }
+        });
+
+        // Handle profile selection
+        profileDropdown.addEventListener('click', (e) => {
+            const button = e.target.closest('.profile-button');
+            if (button) {
+                const name = button.dataset.name;
+                const img = button.dataset.img;
+                if (name === 'add') {
+                    // Redirect to index.html for adding profile
+                    window.location.href = '../index.html';
+                } else {
+                    // Set active profile
+                    localStorage.setItem('perfilAtivoNome', name);
+                    localStorage.setItem('perfilAtivoImagem', img);
+                    // Update UI
+                    const kidsLink = document.querySelector('.kids-link');
+                    const profileIcon = document.querySelector('.profile-icon');
+                    if (kidsLink) kidsLink.textContent = name;
+                    if (profileIcon) profileIcon.src = img;
+                    // Hide dropdown
+                    profileDropdown.style.display = 'none';
+                }
+            }
+        });
+    }
 });

@@ -30,6 +30,11 @@ export const categories = [
                 img: "https://revistaanamaria.com.br/wp-content/uploads/2025/12/lupin-750x375.png", progress: 0,
                 youtube: "https://www.youtube.com/watch?v=FoiQ-Xr8NDI"
             },
+            // Quinto: The Good Doctor
+            {
+                img: "https://rollingstone.com.br/wp-content/uploads/2026/03/Segunda-temporada-de-ONE-PIECE-A-Serie-estreia-na-Netflix-1536x864.jpg", progress: 0,
+                youtube: "https://www.youtube.com/watch?v=KLtSxOirH4g"
+            },
         ]
     },
     // Segunda prateleira: "Séries"
@@ -45,6 +50,7 @@ export const categories = [
             { img: "https://portalleodias.com/diversos/wp-content/uploads/2025/07/p18974714_b_h10_ao-750x375.jpg", badge: "Novo episódio", badgeColor: "red", youtube: "https://www.youtube.com/watch?v=sA6xIbcaZsw" },
             // Mais uma novidade.
             { img: "https://educadora909.com.br/wp-content/uploads/Foto-site-educadora-17-2.png", badge: "Novidade", badgeColor: "red", youtube: "https://www.youtube.com/watch?v=mn0QvmEicIY" },
+            { img: "https://cdn.awsli.com.br/600x450/769/769081/produto/33881548/baba0292ed.jpg", badge: "Novidade", badgeColor: "red", youtube: "https://www.youtube.com/watch?v=1_Y9QKNqdUE" },
         ]
     },
     // Terceira prateleira: "Para maratonar"
@@ -60,6 +66,7 @@ export const categories = [
             { img: "https://www.bnewssaopaulo.com.br/media/uploads/2025/11/1-o-diabo-veste-prada-2.jpg", top10: true, badge: "Novo episódio", badgeColor: "red", youtube: "https://www.youtube.com/watch?v=CeIu3WYoJyo" },
             // Scary Movie, top 10, novo episódio.
             { img: "https://culturar.blog/wp-content/uploads/2023/07/scary-4.jpg", top10: true, badge: "Novo episódio", badgeColor: "red", youtube: "https://www.youtube.com/watch?v=GxOoTFm0IFg" },
+            { img: "https://loggado.com/wp-content/uploads/2017/09/good-doctor-800x445.jpg", top10: true, badge: "Novo episódio", badgeColor: "red", youtube: "https://www.youtube.com/watch?v=lnY9FWUTY84" },
         ]
     }
 ];

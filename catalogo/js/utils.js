@@ -31,3 +31,4 @@ export function getRandomDuration(hasProgress) {
 export function getRandomAgeBadge() {
     return Math.random() > 0.5 ? { text: 'A16', class: 'red-accent' } : { text: '16', class: '' };
 }
+

@@ -30,6 +30,7 @@
         </div>
         <div class="navbar-right">
             <i class="fas fa-search icon"></i>
+            <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
             <a href="../index.html" class="kids-link">Seu nome</a>
             <div class="nav-notification">
                 <i class="fas fa-bell icon"></i>
@@ -38,8 +39,36 @@
             <a href="../index.html" class="profile-menu" style="text-decoration: none; color: inherit;">
                 <img class="profile-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
                     alt="Profile">
-                <i class="fas fa-caret-down icon" style="font-size: 14px; margin-left: 5px;"></i>
+                <i class="fas fa-caret-down icon profile-caret" id="profile-caret" style="font-size: 14px; margin-left: 5px;"></i>
             </a>
+            <div class="profile-dropdown" id="profile-dropdown">
+                <ul class="profile-list">
+                    <li class="profile-item">
+                        <button class="profile-button" data-name="Kevin" data-img="/assets/perfil 1.png">
+                            <img src="/assets/perfil 1.png" alt="Kevin">
+                            <span>Kevin</span>
+                        </button>
+                    </li>
+                    <li class="profile-item">
+                        <button class="profile-button" data-name="Maria Eduarda" data-img="/assets/perfil 2.png">
+                            <img src="/assets/perfil 2.png" alt="Maria Eduarda">
+                            <span>Maria Eduarda</span>
+                        </button>
+                    </li>
+                    <li class="profile-item">
+                        <button class="profile-button" data-name="Karina" data-img="/assets/perfil 3.png">
+                            <img src="/assets/perfil 3.png" alt="Karina">
+                            <span>Karina</span>
+                        </button>
+                    </li>
+                    <li class="profile-item">
+                        <button class="profile-button add-profile" data-name="add">
+                            <i class="fas fa-plus"></i>
+                            <span>Adicionar perfil</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
 
