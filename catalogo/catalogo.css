@@ -376,7 +376,7 @@ a:hover {
     width: 22px; /* Largura */
     height: 28px; /* Altura */
     background-color: var(--netflix-red); /* Fundo vermelho */
-    color: white; /* Cor branca */
+    color: rgb(255, 255, 255); /* Cor branca */
     display: flex; /* Usa flexbox */
     flex-direction: column; /* Direção coluna */
     justify-content: center; /* Centraliza verticalmente */

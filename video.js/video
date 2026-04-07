@@ -1,0 +1,33 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Seleção dos elementos
+    const btnNetflix = document.getElementById('btn-netflix');
+    const overlay = document.getElementById('video-overlay');
+    const video = document.getElementById('netflix-video');
+
+    // 2. Verificação de segurança (evita o erro 'reading addEventListener of null')
+    if (btnNetflix && overlay && video) {
+        
+        btnNetflix.addEventListener('click', function(event) {
+            // Impede a troca de página imediata
+            event.preventDefault();
+
+            // Ativa o overlay (fade-in)
+            overlay.classList.add('active');
+
+            // Inicia o vídeo
+            video.play().catch(error => {
+                console.log("O navegador bloqueou o som. Tentando tocar mudo.");
+                video.muted = true;
+                video.play();
+            });
+        });
+               
+        // 3. Quando o vídeo terminar, redireciona
+        video.onended = function() {
+            window.location.href = "../perfil/perfil.html";
+        };
+
+    } else {
+        console.error("Erro: Verifique se os IDs 'btn-netflix', 'video-overlay' e 'netflix-video' estão no seu HTML.");
+    }
+});

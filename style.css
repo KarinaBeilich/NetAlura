@@ -117,66 +117,49 @@ header {
    TELA DE ABERTURA
    ========================================== */
 
-.opening-screen {
-    /* Posição fixa para cobrir toda a tela */
+/* PARA O VÍDEO DE FUNDO - Estilos para o overlay de vídeo */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Impede a rolagem enquanto o vídeo passa */
+}
+
+#video-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    /* Fundo preto */
-    background-color: #000000;
-    /* Flex para centralizar */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Z-index alto */
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
     z-index: 9999;
-    /* Animação de fade out */
-    animation: fadeOut 4s ease-in-out 3s forwards;
-}
-
-.logo-container {
-    /* Centraliza o logo */
     display: flex;
-    justify-content: center;
     align-items: center;
-    /* Animação de expansão */
-    animation: expandLogo 3s ease-in-out forwards;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
 }
 
-.netflix-logo-opening {
-    /* Tamanho inicial do logo */
-    width: 200px;
-    height: auto;
-    /* Filtro para brilho vermelho */
-    filter: drop-shadow(0 0 20px #E50914);
+#video-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-@keyframes expandLogo {
-    0% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 20px #E50914);
-    }
-    50% {
-        transform: scale(1.5);
-        filter: drop-shadow(0 0 50px #E50914);
-    }
-    100% {
-        transform: scale(2);
-        filter: drop-shadow(0 0 100px #E50914);
-        opacity: 0;
-    }
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
+#video-overlay video {
+    /* CORREÇÃO: Mude de 10vw para 100% para centralizar e preencher */
+    width: 100% !important;
+    height: 100% !important;
+    
+    /* Se quiser que o vídeo apareça INTEIRO sem cortes, use 'contain' */
+    /* Se quiser que ele PREENCHA a tela toda (estilo Netflix), use 'cover' */
+    object-fit: contain; 
+    
+    margin: 0;
+    padding: 0;
 }
 
 /* ==========================================
@@ -479,7 +462,7 @@ main {
     /* Reduz padding da seção em mobile */
     .profile-selection {
         /* Reduz espaçamento interno para mobile */
-        padding: 20px 15px;
+        padding: 15px 10px;
     }
 
     /* Reduz bastante o tamanho do título em mobile */
@@ -487,7 +470,7 @@ main {
         /* Reduz de 3.5rem para 1.8rem */
         font-size: 1.8rem;
         /* Reduz espaço abaixo do título */
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         /* Reduz espaçamento entre letras */
         letter-spacing: 1px;
     }

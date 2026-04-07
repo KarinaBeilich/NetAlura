@@ -37,17 +37,32 @@ themeToggle.addEventListener('click', () => {
 
 // Animação de abertura
 window.addEventListener('load', () => {
+    // Tempo que a tela de abertura fica visível (4 segundos)
     setTimeout(() => {
         const openingScreen = document.getElementById('opening-screen');
         const header = document.querySelector('header');
         const main = document.querySelector('main');
-        
-        openingScreen.style.display = 'none';
-        header.style.opacity = '1';
-        header.style.visibility = 'visible';
-        main.style.opacity = '1';
-        main.style.visibility = 'visible';
-    }, 4000); // Após 4 segundos
+
+        // Adiciona uma classe para sumir suavemente (fade-out)
+        if (openingScreen) {
+            openingScreen.classList.add('hidden');
+            
+            // Remove do DOM após a animação de 0.8s para não pesar a página
+            setTimeout(() => {
+                openingScreen.style.display = 'none';
+            }, 800);
+        }
+
+        // Mostra o conteúdo do site
+        if (header) {
+            header.style.opacity = '1';
+            header.style.visibility = 'visible';
+        }
+        if (main) {
+            main.style.opacity = '1';
+            main.style.visibility = 'visible';
+        }
+    }, 4000);
 });
 
 // Função para os perfis: ao clicar, salva o perfil ativo e vai para o catálogo
